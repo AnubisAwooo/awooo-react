@@ -24,14 +24,23 @@
     <script type="text/javascript" src="../js/babel.min.js"></script>
 
     <script type="text/babel"> /* 此处一定要写 babel */
-        const id = "id"
-        const data = "data"
+        const data = [
+            'Angular',
+            'React',
+            'Vue',
+        ]
         // 1.创建虚拟 dom
         const VDOM = (
-            <h2 id={id} className="title">
-                <span style={{color: 'white', fontSize: '30px'}}>{data}</span>
-                
-            </h2>
+            <div>
+                <h1>前端 js 框架列表</h1>
+                <ul>
+                    {
+                        data.map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            </div>
         )
         // 2.渲染虚拟 dom 到页面
         ReactDOM.render(VDOM, document.getElementById('test'))
