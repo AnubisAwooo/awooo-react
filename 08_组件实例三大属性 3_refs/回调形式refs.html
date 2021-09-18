@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 准备好容器 -->
+    <div id="test"></div>
+
+    <!-- 引入 react 核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入 react-dom 支持 react 操作 dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel 用于将 jsx 转为 js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 属性检查 属性的元数据控制 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <script type="text/babel"> /* 此处一定要写 babel */
+
+        // 有状态的组件
+        class Demo extends React.Component {
+            showData = () => {
+                alert(this.input1.value)
+            }
+            showData2 = () => {
+                alert(this.refs.input2.value)
+            }
+            render() {
+                return <div>
+                        <input ref={(r) => this.input1 = r} type="text" placeholder="点击按钮提示数据" />
+                        <button ref="button100" onClick={this.showData}>点我提示左侧数据</button>
+                        <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>
+                    </div>
+            }
+        }
+
+        // 2.渲染虚拟 dom 到页面
+        ReactDOM.render(<Demo/>, document.getElementById('test'))
+    </script>
+</body>
+</html>
